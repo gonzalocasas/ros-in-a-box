@@ -34,7 +34,8 @@ if [[ $NEW_HOSTNAME != $CURRENT_HOSTNAME ]]; then
   echo "Updating hostname to '$NEW_HOSTNAME'..."
   hostname $NEW_HOSTNAME
   echo $NEW_HOSTNAME > /etc/hostname
-  sed -i "s/$CURRENT_HOSTNAME/$NEW_HOSTNAME/" /etc/hosts
+  echo "127.0.0.1  $NEW_HOSTNAME" >> /etc/hosts
+  #sed -i "s/$CURRENT_HOSTNAME/$NEW_HOSTNAME/" /etc/hosts
 fi
 
 echo "Done"
