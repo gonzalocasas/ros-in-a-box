@@ -16,8 +16,11 @@ if [ $UID != 0 ]; then
   exit 1
 fi
 
+echo
+echo "========================="
 echo "ROS-IN-A-BOX installation"
-echo "-------------------------"
+echo "========================="
+echo
 
 # Get first non-loopback network device that is currently connected
 NIC_NAME=$(ip -oneline link show up 2>&1 | grep -v LOOPBACK | sed -E 's/^[0-9]+: ([0-9a-z]+): .*/\1/' | head -1)
@@ -45,5 +48,8 @@ echo "Updating apt-get and adding ROS sources..."
 sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 apt-get update
+
+echo "Upgrading system..."
+apt-get -y upgrade
 
 echo "Done"
