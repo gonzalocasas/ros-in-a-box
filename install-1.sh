@@ -25,6 +25,7 @@ echo "Installing ROS Bridge and additional tools..."
 sudo apt-get install -y ros-kinetic-rosbridge-server ros-kinetic-tf2-web-republisher
 sudo apt-get install -y python-rosinstall python-rosinstall-generator python-wstool build-essential
 sudo apt-get install -y ros-kinetic-ros-control ros-kinetic-ros-controllers ros-kinetic-industrial-core
+sudo apt-get install -y ros-kinetic-universal-robot
 
 # Add ROS sourcing to profile
 grep -qF 'source /opt/ros/kinetic/setup.bash' ~/.bashrc || echo 'source /opt/ros/kinetic/setup.bash' >> ~/.bashrc
