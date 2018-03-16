@@ -26,13 +26,23 @@ sudo apt-get install -y ros-kinetic-rosbridge-server ros-kinetic-tf2-web-republi
 sudo apt-get install -y python-rosinstall python-rosinstall-generator python-wstool build-essential
 
 # Add ROS sourcing to profile
-LINE='source /opt/ros/kinetic/setup.bash'
-FILE=~/.bashrc
-grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+grep -qF 'source /opt/ros/kinetic/setup.bash' ~/.bashrc || echo 'source /opt/ros/kinetic/setup.bash' >> ~/.bashrc
 source /opt/ros/kinetic/setup.bash
 
+# Catkin ws init
 echo "Initializing catkin workspace..."
 mkdir -p ~/catkin_ws/src
 pushd ~/catkin_ws/
+
+pushd src
+git clone https://github.com/Zagitta/ur_modern_driver.git
+popd
+
 catkin_make
 popd
+
+
+# Configure catkin workspace sourcing
+echo "Configuring catkin workspace..."
+grep -qF 'source ~/catkin_ws/devel/setup.bash' ~/.bashrc || echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
+source ~/catkin_ws/devel/setup.bash
