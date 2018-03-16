@@ -6,7 +6,7 @@
 # Clone this repository:
 #   $ git clone https://github.com/gonzalocasas/ros-in-a-box.git ~/ros-in-a-box
 #   $ cd ~/ros-in-a-box
-#   $ ./install
+#   $ sudo ./install.sh
 
 # Stop on the first sign of trouble
 set -e
@@ -53,3 +53,5 @@ echo "Upgrading system..."
 apt-get -y upgrade
 
 echo "Done"
+
+reboot
