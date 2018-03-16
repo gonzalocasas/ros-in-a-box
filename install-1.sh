@@ -3,8 +3,8 @@
 # Stop on the first sign of trouble
 set -e
 
-if [ $UID != 0 ]; then
-  echo "ERROR: Operation not permitted. Forgot sudo?"
+if [ $UID == 0 ]; then
+  echo "ERROR: Don't run this part with sudo"
   exit 1
 fi
 
@@ -17,9 +17,9 @@ echo
 
 # Installing ROS packages
 echo "Installing ROS packages and setting up basic ROS core..."
-apt-get install -y ros-kinetic-ros-base
-rosdep init
+sudo apt-get install -y ros-kinetic-ros-base
+sudo rosdep init
 rosdep update
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
-apt-get install -y ros-kinetic-rosbridge-server ros-kinetic-tf2-web-republisher
+sudo apt-get install -y ros-kinetic-rosbridge-server ros-kinetic-tf2-web-republisher
