@@ -29,3 +29,9 @@ source $FILE
 
 echo "Installing ROS Bridge and additional tools..."
 sudo apt-get install -y ros-kinetic-rosbridge-server ros-kinetic-tf2-web-republisher
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+echo "Initializing catkin workspace..."
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin_make
