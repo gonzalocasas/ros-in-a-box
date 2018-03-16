@@ -35,15 +35,22 @@ echo "Initializing catkin workspace..."
 mkdir -p ~/catkin_ws/src
 pushd ~/catkin_ws/
 
-pushd src
-git clone https://github.com/Zagitta/ur_modern_driver.git
-popd
-
-catkin_make
-popd
-
-
 # Configure catkin workspace sourcing
 echo "Configuring catkin workspace..."
 grep -qF 'source ~/catkin_ws/devel/setup.bash' ~/.bashrc || echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
 source ~/catkin_ws/devel/setup.bash
+
+pushd src
+echo "Installing UR modern driver..."
+if [ ! -d ur_modern_driver ]; then
+    git clone https://github.com/Zagitta/ur_modern_driver.git
+else
+    pushd ur_modern_driver
+    git fetch origin
+    git reset --hard
+    popd
+fi
+popd
+
+catkin_make
+popd
