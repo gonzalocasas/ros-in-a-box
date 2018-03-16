@@ -33,5 +33,6 @@ sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool
 
 echo "Initializing catkin workspace..."
 mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/
+pushd ~/catkin_ws/
 catkin_make
+popd
