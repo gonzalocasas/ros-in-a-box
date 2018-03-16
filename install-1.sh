@@ -29,7 +29,7 @@ sudo apt-get install -y python-rosinstall python-rosinstall-generator python-wst
 LINE='source /opt/ros/kinetic/setup.bash'
 FILE=~/.bashrc
 grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
-source $FILE
+source /opt/ros/kinetic/setup.bash
 
 echo "Initializing catkin workspace..."
 mkdir -p ~/catkin_ws/src
